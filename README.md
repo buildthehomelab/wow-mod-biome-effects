@@ -1,5 +1,10 @@
 # mod-biome-effects
 
+<!-- links:start -->
+[![Support me on Ko-fi](https://malura.de/assets/badge/kofi.svg)](https://malura.de/go/kofi?ref=mod-biome-effects)
+[![Check out my page](https://malura.de/assets/badge/malura.svg)](https://malura.de/go/site?ref=mod-biome-effects)
+<!-- links:end -->
+
 An [AzerothCore](https://www.azerothcore.org/) module (WotLK 3.3.5a) that adds zone-based passive
 auras for horizontal progression: stepping into a themed zone applies a hidden, passive resistance
 buff ("biome"); leaving it swaps in the new biome's buff (or removes it) automatically.
