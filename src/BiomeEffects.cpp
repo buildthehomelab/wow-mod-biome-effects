@@ -33,6 +33,7 @@
 #include <algorithm>
 #include <array>
 #include <string>
+#include <type_traits>
 #include <utility>
 
 namespace
@@ -125,10 +126,27 @@ namespace
         sCfg.resistanceAmount = std::max(0, sConfigMgr->GetOption<int32>("BiomeEffects.ResistanceAmount", 15));
     }
 
+    // The playerbots fork adds WorldSession::IsBot(); stock AzerothCore (and older playerbots cores)
+    // don't have it. Looking for it at compile time lets the module build on both.
+    template <typename Session, typename = void>
+    struct HasIsBot : std::false_type { };
+
+    template <typename Session>
+    struct HasIsBot<Session, std::void_t<decltype(std::declval<Session&>().IsBot())>> : std::true_type { };
+
+    template <typename Session>
+    bool IsBotSession(Session* session)
+    {
+        if constexpr (HasIsBot<Session>::value)
+            return session->IsBot();
+        else
+            return false;
+    }
+
     bool IsBotPlayer(Player* player)
     {
         WorldSession* session = player->GetSession();
-        return session && session->IsBot();
+        return session && IsBotSession(session);
     }
 
     // Make sure spellId is on the player as a self-aura with its single effect set to `amount`.
