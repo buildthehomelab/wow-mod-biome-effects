@@ -42,7 +42,12 @@ The zone -> biome mapping is documented in the `.conf.dist` file and defined in
 ## Installation
 
 Clone into your AzerothCore `modules/` directory, apply the SQL under
-`data/sql/db-world/updates/`, and rebuild the worldserver.
+`data/sql/db-world/updates/`, and rebuild the worldserver. The repo is
+`wow-mod-biome-effects`; the module folder is `mod-biome-effects`:
+
+```
+git clone https://github.com/buildthehomelab/wow-mod-biome-effects.git mod-biome-effects
+```
 
 ## License
 
